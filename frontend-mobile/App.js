@@ -1,6 +1,7 @@
 // Entry point for React Native Farmer App
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, Text, Button } from 'react-native';
+const BACKEND_URL = 'http://192.168.0.100:8000'; // Replace with your machine's local IP address
 
 const App = () => {
   const [price, setPrice] = useState(null);
@@ -9,7 +10,7 @@ const App = () => {
   const fetchPrice = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:8000/price/current?crop=Wheat&mandi=Delhi');
+  const res = await fetch(`${BACKEND_URL}/price/current?crop=Wheat&mandi=Delhi`);
       const data = await res.json();
       setPrice(data.price);
     } catch (err) {
